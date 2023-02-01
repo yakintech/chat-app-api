@@ -5,6 +5,7 @@ const { Schema } = mongoose
 const webUserSchema = new Schema({
     email: String,
     password: String,
+    socketId:String,
     isDeleted: {
         type: Boolean,
         default: false

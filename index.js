@@ -1,5 +1,7 @@
 const express = require("express");
 const { default: mongoose } = require("mongoose");
+const { chatModel } = require("./models/Chat");
+const { webUserModel } = require("./models/WebUser");
 const app = express();
 
 mongoose.connect('mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongodb.net/chatdb')
@@ -14,4 +16,34 @@ const webUserRouter = require('./routes/webUserRouter');
 
 app.use('/api/webusers', webUserRouter);
 
+
+
+
+
+
+
+// let chat = new chatModel({
+//     message:'Hello Çağatay',
+//     sender: {
+//         id:'63da4a09a6c7240276e02e07',
+//         name:'Akif'
+//     },
+//     receiver:{
+//         id:'63da4a09a6c7240276e02e08',
+//         name:'Çağatay'
+//     }
+
+// });
+
+// chat.save();
+
+
+
+
+// chatModel.find()
+//     .populate('sender')
+//     .populate('receiver')
+//     .exec((err,docs) => {
+//         console.log('Docs', docs);
+//     })
 
