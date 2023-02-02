@@ -4,6 +4,9 @@ const { chatModel } = require("./models/Chat");
 const { webUserModel } = require("./models/WebUser");
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 mongoose.connect('mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongodb.net/chatdb')
     .then(res => {
         console.log('Connected!');
@@ -15,6 +18,16 @@ mongoose.connect('mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongod
 const webUserRouter = require('./routes/webUserRouter');
 
 app.use('/api/webusers', webUserRouter);
+
+
+
+
+
+app.listen(8080);
+
+
+
+
 
 
 
@@ -38,12 +51,11 @@ app.use('/api/webusers', webUserRouter);
 // chat.save();
 
 
-
-
 // chatModel.find()
 //     .populate('sender')
 //     .populate('receiver')
 //     .exec((err,docs) => {
 //         console.log('Docs', docs);
 //     })
+
 

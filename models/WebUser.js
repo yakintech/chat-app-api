@@ -6,6 +6,7 @@ const webUserSchema = new Schema({
     email: String,
     password: String,
     socketId:String,
+    confirmCode: String,
     isDeleted: {
         type: Boolean,
         default: false
