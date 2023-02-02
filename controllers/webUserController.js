@@ -25,11 +25,8 @@ const webUserController = {
     },
     login: (req, res) => {
 
-
         let email = req.body.email;
         let password = req.body.password;
-
-
         webUserModel.findOne({ email: email, password: password }, (err, doc) => {
 
             if (!err) {
@@ -71,6 +68,24 @@ const webUserController = {
 
         })
 
+    },
+    confirmCode: (req,res) => {
+        let confirmCode = req.body.confirmCode;
+        let webUserId = req.body.webUserId;
+
+        webUserModel.findOne({confirmCode: confirmCode, id: webUserId, isDeleted:false}, (err,doc) => {
+            if(!err){
+                if(doc){
+                    res.json(doc);
+                }
+                else{
+                    res.status(404).json({'message': 'not found'});
+                }
+            }
+            else{
+                res.status(500).json(err)
+            }
+        })
     }
 }
 

@@ -20,9 +20,6 @@ const webUserRouter = require('./routes/webUserRouter');
 app.use('/api/webusers', webUserRouter);
 
 
-
-
-
 app.listen(8080);
 
 
