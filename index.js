@@ -1,36 +1,28 @@
-const express = require("express");
-const { default: mongoose } = require("mongoose");
-const { chatModel } = require("./models/Chat");
-const { webUserModel } = require("./models/WebUser");
+const express = require('express');
+const { default: mongoose } = require('mongoose');
+const { chatModel } = require('./models/Chat');
+const { webUserModel } = require('./models/WebUser');
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded());
 
-mongoose.connect('mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongodb.net/chatdb')
-    .then(res => {
-        console.log('Connected!');
-    })
-    .catch(err => {
-        console.log('Connection error!');
-    })
+mongoose
+	.connect('mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongodb.net/chatdb')
+	.then((res) => {
+		console.log('Connected!');
+	})
+	.catch((err) => {
+		console.log('Connection error!');
+	});
 
 const webUserRouter = require('./routes/webUserRouter');
+const groupRoutes = require('./routes/groupRoutes');
 
 app.use('/api/webusers', webUserRouter);
-
+app.use('/api/group', groupRoutes);
 
 app.listen(8080);
-
-
-
-
-
-
-
-
-
-
 
 // let chat = new chatModel({
 //     message:'Hello Çağatay',
@@ -47,12 +39,9 @@ app.listen(8080);
 
 // chat.save();
 
-
 // chatModel.find()
 //     .populate('sender')
 //     .populate('receiver')
 //     .exec((err,docs) => {
 //         console.log('Docs', docs);
 //     })
-
-
