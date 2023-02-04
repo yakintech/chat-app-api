@@ -1,4 +1,6 @@
-const { Schema, default: mongoose } = require('mongoose');
+const { default: mongoose } = require('mongoose');
+
+const { Schema } = mongoose;
 
 const groupSchema = Schema({
 	groupName: {
@@ -15,8 +17,8 @@ const groupSchema = Schema({
 	},
 });
 
-const group = mongoose.model('Group', groupSchema);
+const groupModel = mongoose.model('Group', groupSchema);
 
 module.exports = {
-	group,
+	groupModel,
 };

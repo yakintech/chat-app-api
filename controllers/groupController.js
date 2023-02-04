@@ -1,9 +1,9 @@
-const { groupSchema } = require('../models/Group');
+const { groupModel } = require('../models/Group');
 
 const groupController = {
 	getAll: (req, res) => {
-		groupSchema.find((err, doc) => {
-			if (!err) res.json(docs);
+		groupModel.find((err, doc) => {
+			if (!err) res.json(doc);
 			else res.status(500).json(err);
 		});
 	},
