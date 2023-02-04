@@ -27,3 +27,7 @@ const membersController={
     //     })
     // }
 }
+
+module.exports={
+    membersController
+}
