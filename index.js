@@ -16,8 +16,11 @@ mongoose.connect('mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongod
     })
 
 const webUserRouter = require('./routes/webUserRouter');
+const groupsRouter = require('./routes/groupsRouter');
 
 app.use('/api/webusers', webUserRouter);
+app.use('/api/groups', groupsRouter);
+
 
 
 app.listen(8080);
@@ -54,5 +57,4 @@ app.listen(8080);
 //     .exec((err,docs) => {
 //         console.log('Docs', docs);
 //     })
-
 
