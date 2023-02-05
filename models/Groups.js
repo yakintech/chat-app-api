@@ -7,7 +7,6 @@ const groupSchema = new Schema(
         name: {
             type: String,
             required: true,
-            unique:true
         },
         users: {
             type: Array,

@@ -14,8 +14,7 @@ const groupsController = {
         var query = {name: req.body.name}
 
         groupsModel.find(query, (err,doc)=>{
-            console.log(doc);
-            if(doc=[]){
+            if(true){
                 let newGroup = new groupsModel({
                     name: req.body.name,
                     users: req.body.users
@@ -27,11 +26,9 @@ const groupsController = {
                         res.status(201).json(doc)
                     }
                     else {
-                        res.status(500).json(err)
+                        res.status(500).json({"msg":"That is duplicate name!"})
                     }
                 })
-            }else{
-                res.status(505).json({"msg":"That is duplicate name!"})
             }
         }
         
