@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
 
-mongoose.connect('mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongodb.net/chatdb')
+mongoose.connect(`mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongodb.net/chatdb`)
     .then(res => {
         console.log('Connected!');
     })
@@ -16,8 +16,14 @@ mongoose.connect('mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongod
     })
 
 const webUserRouter = require('./routes/webUserRouter');
+const groupRouter = require('./routes/groupRouter');
+const membersRouter = require('./routes/membersRouter');
+const chatRouter = require('./routes/chatRouter');
 
 app.use('/api/webusers', webUserRouter);
+app.use('/api/group', groupRouter);
+app.use('/api/members', membersRouter);
+app.use('/api/chat', chatRouter);
 
 
 app.listen(8080);
