@@ -20,6 +20,15 @@ const chatController = {
                 res.status(500).json(err);
             }
         })
+    },
+    getAll: (req, res) => {
+        chatModel.find({ isDeleted: false }).populate("senderId receiverId").exec((err, docs) => {
+            if (!err) {
+                res.json(docs)
+            } else {
+                res.status(500).json(err);
+            }
+        })
     }
 }
 
