@@ -1,4 +1,4 @@
-const { groupsModel } = require("../models/Groups");
+const { groupsModel } = require("../models/CreateGroup");
 
 const groupsController = {
   getGroups: (req, res) => {
