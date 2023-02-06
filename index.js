@@ -17,12 +17,8 @@ mongoose
 	});
 
 const webUserRouter = require('./routes/webUserRouter');
-const groupRouter = require('./routes/groupRouter');
-const membersRouter = require('./routes/groupRouter');
 
 app.use('/api/webusers', webUserRouter);
-app.use('/api/group', groupRouter);
-app.use('/api/members', membersRouter);
 
 app.listen(8080);
 
