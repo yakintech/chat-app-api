@@ -19,11 +19,13 @@ const webUserRouter = require('./routes/webUserRouter');
 const groupRouter = require('./routes/groupRouter');
 const membersRouter = require('./routes/membersRouter');
 const chatRouter = require('./routes/chatRouter');
+const groupChatRouter = require('./routes/groupChatRouter');
 
 app.use('/api/webusers', webUserRouter);
 app.use('/api/group', groupRouter);
 app.use('/api/members', membersRouter);
 app.use('/api/chat', chatRouter);
+app.use('/api/groupchat', groupChatRouter);
 
 
 app.listen(8080);

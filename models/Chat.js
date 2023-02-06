@@ -10,12 +10,7 @@ const chatSchema = new Schema({
     },
     receiverId: {
         type: "ObjectId",
-        refPath: 'receiverModel'
-    },
-    receiverModel: {
-        type: String,
-        enum: ['webuser', 'Group'],
-        required: true
+        ref: "webuser"
     },
     isDeleted: {
         type: Boolean,

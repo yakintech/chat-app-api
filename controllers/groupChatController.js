@@ -1,8 +1,8 @@
-const { chatModel } = require("../models/Chat");
+const { groupChatModel } = require("../models/GroupChat");
 
-const chatController = {
+const groupChatController = {
     getAll: (req, res) => {
-        chatModel.find({ isDeleted: false }).populate("senderId receiverId").exec((err, docs) => {
+        groupChatModel.find({ isDeleted: false }).populate("senderId receiverGroupId").exec((err, docs) => {
             if (!err) {
                 res.json(docs)
             } else {
@@ -11,8 +11,8 @@ const chatController = {
         })
     },
     add: (req, res) => {
-        let { message, senderId, receiverId } = req.body;
-        let newMessage = new chatModel({ message, senderId, receiverId });
+        let { message, senderId, receiverGroupId } = req.body;
+        let newMessage = new chatModel({ message, senderId, receiverGroupId });
         newMessage.save(function (err, doc) {
             if (!err) {
                 res.json(doc);
@@ -24,5 +24,5 @@ const chatController = {
 }
 
 module.exports = {
-    chatController
+    groupChatController
 }
