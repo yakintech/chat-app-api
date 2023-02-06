@@ -20,8 +20,11 @@ mongoose
   });
 
 const webUserRouter = require("./routes/webUserRouter");
+const chatHistoryRouter = require("./routes/chatHistoryRouter")
 
 app.use("/api/webusers", webUserRouter);
+app.use("/api/chatHistory", chatHistoryRouter);
+
 
 app.listen(8080);
 
