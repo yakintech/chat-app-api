@@ -1,11 +1,15 @@
 const { groupsModel } = require("../models/CreateGroup");
 
 const groupsController = {
-  getGroups: (req, res) => {
-    groupsModel.find({ isDeleted: false }, (err, docs) => {
+  getCreateGroupUsers: (req, res) => {
+    webUserModel.find({ isDeleted: false }, (err, docs) => {
       if (!err) res.json(docs);
       else res.status(500).json(err);
     });
+    // groupsModel.find({ isDeleted: false }, (err, docs) => {
+    //   if (!err) res.json(docs);
+    //   else res.status(500).json(err);
+    // });
   },
   createGroup: (req, res) => {
     var query = { name: req.body.name };
