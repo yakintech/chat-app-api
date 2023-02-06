@@ -2,7 +2,7 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 const { chatModel } = require("./models/Chat");
 const { webUserModel } = require("./models/WebUser");
-const contactRouter = require("./routes/contactRouter");
+
 const app = express();
 
 app.use(express.json());
@@ -22,7 +22,6 @@ mongoose
 const webUserRouter = require("./routes/webUserRouter");
 
 app.use("/api/webusers", webUserRouter);
-app.use("/api/contact", contactRouter);
 
 app.listen(8080);
 
