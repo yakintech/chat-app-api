@@ -2,18 +2,29 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 const { chatModel } = require("./models/Chat");
 const { webUserModel } = require("./models/WebUser");
+
 const app = express();
-
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded())
 
-mongoose.connect('mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongodb.net/chatdb')
-    .then(res => {
-        console.log('Connected!');
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server, {
+    cors: {
+        origin: '*',
+    }
+});
+
+
+io.on('connection', (socket) => {
+
+    console.log('socket', socket.id);
+
+    socket.on('chatmessage', (data) => {
+        io.emit("chatmessage2", data);
     })
-    .catch(err => {
-        console.log('Connection error!');
-    })
+  })
 
 const webUserRouter = require('./routes/webUserRouter');
 const groupsRouter = require('./routes/groupsRouter');
@@ -23,38 +34,11 @@ app.use('/api/groups', groupsRouter);
 
 
 
-app.listen(8080);
+
+server.listen(8088, () => {
+    console.log('listening on *:8088');
+});
 
 
 
-
-
-
-
-
-
-
-
-// let chat = new chatModel({
-//     message:'Hello Çağatay',
-//     sender: {
-//         id:'63da4a09a6c7240276e02e07',
-//         name:'Akif'
-//     },
-//     receiver:{
-//         id:'63da4a09a6c7240276e02e08',
-//         name:'Çağatay'
-//     }
-
-// });
-
-// chat.save();
-
-
-// chatModel.find()
-//     .populate('sender')
-//     .populate('receiver')
-//     .exec((err,docs) => {
-//         console.log('Docs', docs);
-//     })
 
