@@ -4,9 +4,28 @@ const { chatModel } = require("./models/Chat");
 const { webUserModel } = require("./models/WebUser");
 
 const app = express();
-
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded())
+
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server, {
+    cors: {
+        origin: '*',
+    }
+});
+
+
+io.on('connection', (socket) => {
+
+    console.log('socket', socket.id);
+
+    socket.on('chatmessage', (data) => {
+        io.emit("chatmessage2", data);
+    })
+
+})
 
 mongoose
   .connect(
@@ -23,26 +42,12 @@ const webUserRouter = require("./routes/webUserRouter");
 
 app.use("/api/webusers", webUserRouter);
 
-app.listen(8080);
 
-// let chat = new chatModel({
-//     message:'Hello Çağatay',
-//     sender: {
-//         id:'63da4a09a6c7240276e02e07',
-//         name:'Akif'
-//     },
-//     receiver:{
-//         id:'63da4a09a6c7240276e02e08',
-//         name:'Çağatay'
-//     }
 
-// });
+server.listen(8088, () => {
+    console.log('listening on *:8088');
+});
 
-// chat.save();
 
-// chatModel.find()
-//     .populate('sender')
-//     .populate('receiver')
-//     .exec((err,docs) => {
-//         console.log('Docs', docs);
-//     })
+
+
