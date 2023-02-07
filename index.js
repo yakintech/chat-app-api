@@ -24,23 +24,14 @@ io.on('connection', (socket) => {
     socket.on('chatmessage', (data) => {
         io.emit("chatmessage2", data);
     })
-
-})
-
-mongoose
-  .connect(
-    "mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongodb.net/chatdb"
-  )
-  .then((res) => {
-    console.log("Connected!");
   })
-  .catch((err) => {
-    console.log("Connection error!");
-  });
 
-const webUserRouter = require("./routes/webUserRouter");
+const webUserRouter = require('./routes/webUserRouter');
+const groupsRouter = require('./routes/groupsRouter');
 
-app.use("/api/webusers", webUserRouter);
+app.use('/api/webusers', webUserRouter);
+app.use('/api/groups', groupsRouter);
+
 
 
 
