@@ -33,6 +33,7 @@ app.use('/api/webusers', webUserRouter);
 app.use('/api/groups', groupsRouter);
 
 
+app.use("/api/webusers", webUserRouter);
 
 
 server.listen(8088, () => {
