@@ -32,8 +32,13 @@ const groupsRouter = require('./routes/groupsRouter');
 app.use('/api/webusers', webUserRouter);
 app.use('/api/groups', groupsRouter);
 
+const webUserRouter = require("./routes/webUserRouter");
+const chatHistoryRouter = require("./routes/chatHistoryRouter")
+
 
 app.use("/api/webusers", webUserRouter);
+app.use("/api/chatHistory", chatHistoryRouter);
+
 
 
 server.listen(8088, () => {
