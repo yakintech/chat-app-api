@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
   })
 
 const webUserRouter = require('./routes/webUserRouter');
-const groupsRouter = require('./routes/groupsRouter');
+const groupsRouter = require('./routes/createGroupsRouter');
 
 app.use('/api/webusers', webUserRouter);
 app.use('/api/groups', groupsRouter);
