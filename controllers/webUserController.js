@@ -15,8 +15,9 @@ const transporter = nodemailer.createTransport({
 
 
 const webUserController = {
+
     getAll: (req, res) => {
-        webUserModel.find({ isDeleted: false }, (err, docs) => {
+        webUserModel.find({ isDeleted: false }).select('_id email').exec((err, docs) => {
             if (!err)
                 res.json(docs)
             else

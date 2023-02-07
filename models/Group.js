@@ -3,18 +3,22 @@ const { default: mongoose } = require('mongoose');
 const { Schema } = mongoose;
 
 const groupSchema = Schema({
-	groupName: {
+	name: {
 		type: String,
 		required: true,
 	},
+	users: {
+		type: Array,
+		required: true
+	},
 	isDeleted: {
 		type: Boolean,
-		default: false,
+		default: false
 	},
-	date: {
+	createDate: {
 		type: Date,
-		default: Date.now(),
-	},
+		default: Date.now()
+	}
 });
 
 const groupModel = mongoose.model('Group', groupSchema);
