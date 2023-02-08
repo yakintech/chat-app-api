@@ -3,38 +3,25 @@ const { webUserModel } = require('../models/WebUser');
 
 const groupController = {
 	getAll: async (req, res) => {
-		let docs = await groupModel.find().exec();
+
+		let docs = await groupModel.find()
+			.populate('users')
+			.exec();
 
 		let responseModel = [];
 
 		docs.forEach(item => {
 			let model = {
 				id: item._id,
-				createDate: item.createDate,
 				name: item.name,
+				createDate: item.createDate,
 				members: []
-			};
+			}
 
-			console.log('1');
-			item.users.forEach(async userId => {
-				console.log('2');
-
-				await webUserModel.findById(userId)
-					.then(res => {
-						console.log('3');
-						model.members.push(res.email);
-					})
-					.catch(findErr => {
-						res.status(500).json(findErr)
-					})
-				console.log('4');
-			})
-
-			console.log('5');
-			responseModel.push(model)
+			model.members = item.users.map(item => item.email);
+			responseModel.push(model);
 		})
-
-		res.json(responseModel);
+		return res.json(responseModel)
 
 	},
 	create: (req, res) => {
@@ -65,6 +52,35 @@ const groupController = {
 				res.status(500).json(err);
 			}
 		})
+
+	},
+	getAll2: async (req, res) => {
+
+		let docs = await groupModel.find().exec();
+
+
+		let responseModel = [];
+		docs.forEach(item => {
+
+			let model = {
+				id: item._id,
+				name: item.name,
+				createdDate: item.createDate,
+				members: []
+			}
+
+			item.users.forEach(async user => {
+				let result = await webUserModel.findById(user._id).exec();
+				model.members.push(result.email);
+
+			});
+
+			responseModel.push(model);
+		})
+
+
+		res.send(responseModel);
+
 
 	}
 };

@@ -7,10 +7,7 @@ const groupSchema = Schema({
 		type: String,
 		required: true,
 	},
-	users: {
-		type: Array,
-		required: true
-	},
+	users: [{ type: Schema.Types.ObjectId, ref: 'webuser' }],
 	isDeleted: {
 		type: Boolean,
 		default: false
