@@ -80,7 +80,7 @@ const webUserController = {
         webUserModel.findOne({confirmCode: confirmCode, id: webUserId, isDeleted:false}, (err,doc) => {
             if(!err){
                 if(doc){
-
+                    console.log('FOUND!', doc);
                     let token = jwt.sign({ email: 'a@a.com' }, privateKey, {
                         algorithm: 'HS256',
                         expiresIn: '5h'
