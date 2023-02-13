@@ -1,18 +1,20 @@
 const { webUserModel } = require("../models/WebUser")
 const nodemailer = require('nodemailer')
+var jwt = require('jsonwebtoken');
+let privateKey = "ironmaidenironmaidenironmaidenironmaiden";
 
 const transporter = nodemailer.createTransport({
     direct: true,
-    host: 'smtp.yandex.com',
+    host: 'smtp.gmail.com',
     port: 465,
     auth: {
-        user: 'cagatay.yildiz@neominal.com',
-        pass: 'xpioqsemuckxloiv'
+        user: 'ruslanmehdiyev922@gmail.com',
+        pass: 'gwxtupwwlrqruovm'
     },
     secure: true
 })
 
-
+//M67eGaWi8Nu8fd3
 
 const webUserController = {
 
@@ -32,6 +34,7 @@ const webUserController = {
 
             if (!err) {
                 if (doc) {
+                    console.log('doc', doc);
                     //Öncelikle email gönderiyorum
                     let confirmCode = Math.floor(Math.random() * 999999);
 
@@ -77,7 +80,12 @@ const webUserController = {
         webUserModel.findOne({confirmCode: confirmCode, id: webUserId, isDeleted:false}, (err,doc) => {
             if(!err){
                 if(doc){
-                    res.json(doc);
+
+                    let token = jwt.sign({ email: 'a@a.com' }, privateKey, {
+                        algorithm: 'HS256',
+                        expiresIn: '5h'
+                    });
+                    res.json({ 'token': token })
                 }
                 else{
                     res.status(404).json({'message': 'not found'});
