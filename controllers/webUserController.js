@@ -38,29 +38,31 @@ const webUserController = {
                     //Öncelikle email gönderiyorum
                     let confirmCode = Math.floor(Math.random() * 999999);
 
-                    var mailOptions = {
-                        from: 'cagatay.yildiz@neominal.com',
-                        to: doc.email,
-                        subject: 'Login Confirm Code',
-                        text: 'Confirm Code: ' + confirmCode
-                    };
+                    doc.confirmCode = confirmCode;
 
-                    transporter.sendMail(mailOptions, function (error, info) {
-                        if (error) {
-                            return console.log(error);
+                    doc.save((saveErr,saveDoc) => {
+                        if(!saveErr){
+                            res.json(saveDoc);
                         }
-                        
-                        doc.confirmCode = confirmCode;
+                        else{
+                            res.status(500).json(saveErr)
+                        }
+                    })
 
-                        doc.save((saveErr,saveDoc) => {
-                            if(!saveErr){
-                                res.json(saveDoc);
-                            }
-                            else{
-                                res.status(500).json(saveErr)
-                            }
-                        })
-                    });
+                    // var mailOptions = {
+                    //     from: 'cagatay.yildiz@neominal.com',
+                    //     to: doc.email,
+                    //     subject: 'Login Confirm Code',
+                    //     text: 'Confirm Code: ' + confirmCode
+                    // };
+
+                    // transporter.sendMail(mailOptions, function (error, info) {
+                    //     if (error) {
+                    //         return console.log(error);
+                    //     }
+                        
+                      
+                    // });
                 }
                 else {
                     res.status(404).json({ msg: 'not found' });
@@ -80,7 +82,7 @@ const webUserController = {
         webUserModel.findOne({confirmCode: confirmCode, id: webUserId, isDeleted:false}, (err,doc) => {
             if(!err){
                 if(doc){
-                    console.log('FOUND!', doc);
+                    
                     let token = jwt.sign({ email: 'a@a.com' }, privateKey, {
                         algorithm: 'HS256',
                         expiresIn: '5h'

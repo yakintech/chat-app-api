@@ -20,7 +20,6 @@ let privateKey = "ironmaidenironmaidenironmaidenironmaiden";
 app.use((req, res, next) => {
 
   if (req.url == '/api/webusers/login' || req.url == '/api/webusers/confirmCode') {
-    console.log('NEXT!');
    return next();
   }
 
