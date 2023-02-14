@@ -33,7 +33,7 @@ const webUserController = {
       if (!err) {
         if (doc) {
           console.log("doc", doc);
-          //Öncelikle email gönderiyorum
+
           let confirmCode = Math.floor(Math.random() * 999999);
 
           doc.confirmCode = confirmCode;
