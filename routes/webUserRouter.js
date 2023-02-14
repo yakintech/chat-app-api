@@ -3,9 +3,9 @@ const { webUserController } = require("../controllers/webUserController");
 
 const router = express.Router();
 
-router.get('/', webUserController.getAll);
-router.post('/login', webUserController.login);
-router.post('/confirmcode', webUserController.confirmCode);
+router.get("/", webUserController.getAll);
+router.post("/login", webUserController.login);
+router.post("/confirmcode", webUserController.confirmCode);
+router.post("/addWebUsers", webUserController.addWebusers);
 
-
-module.exports = router
+module.exports = router;
