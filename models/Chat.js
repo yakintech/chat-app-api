@@ -4,27 +4,27 @@ const { Schema } = mongoose;
 
 const chatSchema = new Schema({
     message: String,
+    senderId: {
+        type: "ObjectId",
+        ref: "webuser"
+    },
+    receiverId: {
+        type: "ObjectId",
+        ref: "webuser"
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
+    },
     date: {
         type: Date,
         default: Date.now()
-    },
-    sender: {},
-    receiver: {}
+    }
 })
 
 const chatModel = mongoose.model('chat', chatSchema);
 
+
 module.exports = {
     chatModel
 }
-
-
-
-let responseModel = [
-    {
-        sender:'Çağatay',
-        receiver:'Ali',
-        message:'Hello',
-        date:'13:45'
-    }
-]
