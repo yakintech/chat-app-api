@@ -4,7 +4,10 @@ const { webUserModel } = require("../models/WebUser");
 
 const groupController = {
   getAll: async (req, res) => {
-    let docs = await groupModel.find().populate("users").exec();
+    let docs = await groupModel
+      .find({ isDeleted: false })
+      .populate("users")
+      .exec();
 
     let responseModel = [];
 
