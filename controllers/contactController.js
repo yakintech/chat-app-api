@@ -1,7 +1,7 @@
 const { contactModel } = require("../models/ContactPage");
 
-const contactPageController = {
-  sendData: (req, res) => {
+const contactController = {
+  add: (req, res) => {
     let newContact = new contactModel({
       name: req.body.name,
       surname: req.body.surname,
@@ -19,5 +19,5 @@ const contactPageController = {
 };
 
 module.exports = {
-  contactPageController,
+  contactController,
 };
