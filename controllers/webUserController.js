@@ -69,8 +69,10 @@ const webUserController = {
 	confirmCode: (req, res) => {
 		let confirmCode = req.body.confirmCode;
 		let webUserId = req.body.webUserId;
+
 		webUserModel.findOneAndUpdate(
-			{ confirmCode: confirmCode, id: webUserId, isDeleted: false, lastLoginDate: Date.now() },
+			{ confirmCode: confirmCode, id: webUserId, isDeleted: false },
+			{ $set: { lastLoginDate: Date.now() } },
 			{ new: true },
 			(err, doc) => {
 				if (!err) {
