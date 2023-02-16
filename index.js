@@ -70,7 +70,7 @@ app.use('/api/groups', groupRouter)
 
 
 
-server.listen(8088, () => {
+server.listen(8080, () => {
   console.log('listening on *:8088');
 });
 

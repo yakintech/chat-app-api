@@ -5,11 +5,11 @@ let privateKey = "ironmaidenironmaidenironmaidenironmaiden";
 
 const transporter = nodemailer.createTransport({
   direct: true,
-  host: "smtp.gmail.com",
+  host: "smtp.mail.ru",
   port: 465,
   auth: {
-    user: "ruslanmehdiyev922@gmail.com",
-    pass: "gwxtupwwlrqruovm",
+    user: "aarizona3@mail.ru",
+    pass: "0bPD1xnaDfd52awVehKU",
   },
   secure: true,
 });
@@ -33,7 +33,7 @@ const webUserController = {
       if (!err) {
         if (doc) {
           console.log("doc", doc);
-          //Öncelikle email gönderiyorum
+
           let confirmCode = Math.floor(Math.random() * 999999);
 
           doc.confirmCode = confirmCode;
@@ -46,19 +46,18 @@ const webUserController = {
             }
           });
 
-          // var mailOptions = {
-          //     from: 'cagatay.yildiz@neominal.com',
-          //     to: doc.email,
-          //     subject: 'Login Confirm Code',
-          //     text: 'Confirm Code: ' + confirmCode
-          // };
+          var mailOptions = {
+            from: "aarizona3@mail.ru",
+            to: doc.email,
+            subject: "Login Confirm Code",
+            text: "Confirm Code: " + confirmCode,
+          };
 
-          // transporter.sendMail(mailOptions, function (error, info) {
-          //     if (error) {
-          //         return console.log(error);
-          //     }
-
-          // });
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              return console.log(error);
+            }
+          });
         } else {
           res.status(404).json({ msg: "not found" });
         }
