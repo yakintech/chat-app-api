@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const webUserRouter = require("./routes/webUserRouter");
@@ -6,6 +7,13 @@ const groupRouter = require("./routes/groupRouter");
 var jwt = require('jsonwebtoken');
 
 var cors = require('cors')
+=======
+const express = require('express');
+const { default: mongoose } = require('mongoose');
+const { chatModel } = require('./models/Chat');
+const { webUserModel } = require('./models/WebUser');
+const app = express();
+>>>>>>> ef584205607e72af51ce154c53de4f0357a67797
 
 const app = express();
 app.use(express.json());
@@ -15,7 +23,18 @@ app.use(cors())
 const http = require('http');
 const server = http.createServer(app);
 
+<<<<<<< HEAD
 let privateKey = "ironmaidenironmaidenironmaidenironmaiden";
+=======
+mongoose
+	.connect('mongodb+srv://cagatay:jYjpMvn5WXivq4uh@cluster0.imfaisw.mongodb.net/chatdb')
+	.then((res) => {
+		console.log('Connected!');
+	})
+	.catch((err) => {
+		console.log('Connection error!');
+	});
+>>>>>>> ef584205607e72af51ce154c53de4f0357a67797
 
 app.use((req, res, next) => {
 
@@ -76,6 +95,15 @@ server.listen(8080, () => {
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+// chatModel.find()
+//     .populate('sender')
+//     .populate('receiver')
+//     .exec((err,docs) => {
+//         console.log('Docs', docs);
+//     })
+>>>>>>> ef584205607e72af51ce154c53de4f0357a67797

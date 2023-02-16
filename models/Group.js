@@ -10,12 +10,12 @@ const groupSchema = Schema({
 	users: [{ type: Schema.Types.ObjectId, ref: 'webuser' }],
 	isDeleted: {
 		type: Boolean,
-		default: false
+		default: false,
 	},
 	createDate: {
 		type: Date,
-		default: Date.now()
-	}
+		default: Date.now(),
+	},
 });
 
 const groupModel = mongoose.model('Group', groupSchema);
